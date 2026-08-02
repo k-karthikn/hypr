@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG_FILE="$HOME/.config/hypr/scripts/gammastep.log"
+LOG_FILE="$HOME/.config/hypr/logs/gammastep.log"
 exec >> "$LOG_FILE" 2>&1
 
 echo "------------------------------"

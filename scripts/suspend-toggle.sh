@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG_FILE="$HOME/.config/hypr/scripts/suspend.log"
+LOG_FILE="$HOME/.config/hypr/logs/suspend.log"
 exec >> "$LOG_FILE" 2>&1
 
 echo "------------------------------"
