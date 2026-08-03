@@ -21,3 +21,13 @@ hl.bind("SUPER + bracketleft", hl.dsp.layout("move -col"))
 -- 2. Swap Columns (Reorder the tape)
 hl.bind("SUPER + SHIFT + bracketright", hl.dsp.layout("swapcol r"))
 hl.bind("SUPER + SHIFT + bracketleft", hl.dsp.layout("swapcol l"))
+
+hl.bind("SUPER + ALT + Equal", function()
+    if is_expanded then
+        hl.dispatch(hl.dsp.window.resize({ x = -700, y = 0, relative = true }))
+    else
+        hl.dispatch(hl.dsp.window.resize({ x = 700, y = 0, relative = true }))
+    end
+    
+    is_expanded = not is_expanded
+end)
