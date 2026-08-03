@@ -22,6 +22,7 @@ hl.bind("SUPER + bracketleft", hl.dsp.layout("move -col"))
 hl.bind("SUPER + SHIFT + bracketright", hl.dsp.layout("swapcol r"))
 hl.bind("SUPER + SHIFT + bracketleft", hl.dsp.layout("swapcol l"))
 
+local is_expanded = false
 hl.bind("SUPER + ALT + Equal", function()
     if is_expanded then
         hl.dispatch(hl.dsp.window.resize({ x = -700, y = 0, relative = true }))
