@@ -1,5 +1,0 @@
-------------------------------
-Time: Sun Aug  2 09:40:16 PM IST 2026
-Initiating system suspend-then-hibernate sequence...
-Execution Failed: Call to SuspendThenHibernate failed: Not enough suitable swap space for hibernation available on compatible block devices and file systems
-Done

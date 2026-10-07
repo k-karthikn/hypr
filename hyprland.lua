@@ -1,54 +1,44 @@
-local HOME = os.getenv("HOME")
+-- This file sources other files in `hyprland` and `custom` folders
+-- You wanna add your stuff in files in `custom`
 
-package.path = package.path
-    .. ";" .. HOME .. "/.config/hypr/?.lua"
-    .. ";" .. HOME .. "/.config/caelestia/?.lua"
+-- Internal stuff --
+require("hyprland.lib")
+require("hyprland.services")
 
-local function maybe_create(path)
-    local file = io.open(path, "r")
-
-    if file then
-        file:close()
-        return
-    end
-
-    file = io.open(path, "w")
-
-    if file then
-        file:close()
-    end
+-- Environment variables --
+require("hyprland.env")
+if is_file_exists(HOME .. "/.config/hypr/custom/env.lua") then
+    require("custom.env")
 end
 
-maybe_create(HOME .. "/.config/hypr/hypr-vars.lua")
-maybe_create(HOME .. "/.config/hypr/hypr-user.lua")
+-- Default configurations --
+require("hyprland.execs")
+require("hyprland.general")
+require("hyprland.rules")
+require("hyprland.colors")
+require("hyprland.keybinds")
 
-Config = require("variables")
-require("hypr-vars")
-
-hl.monitor({
-    output = "",
-    mode = "preferred",
-    position = "auto",
-    scale = 1,
-})
-
-local modules = {
-    "hyprland.env",
-    "hyprland.general",
-    "hyprland.input",
-    "hyprland.misc",
-    "hyprland.animations",
-    "hyprland.decoration",
-    "hyprland.group",
-    "hyprland.execs",
-    "hyprland.rules",
-    "hyprland.gestures",
-    "hyprland.keybinds",
-    "hyprland.scrolling",
-}
-
-for _, module in ipairs(modules) do
-    require(module)
+-- Custom configurations --
+if is_file_exists(HOME .. "/.config/hypr/custom/execs.lua") then
+    require("custom.execs")
+end
+if is_file_exists(HOME .. "/.config/hypr/custom/general.lua") then
+    require("custom.general")
+end
+if is_file_exists(HOME .. "/.config/hypr/custom/rules.lua") then
+    require("custom.rules")
+end
+if is_file_exists(HOME .. "/.config/hypr/custom/keybinds.lua") then
+    require("custom.keybinds")
 end
 
-require("hypr-user")
+-- nwg-displays support --
+if is_file_exists(HOME .. "/.config/hypr/workspaces.lua") then
+    require("workspaces")
+end
+if is_file_exists(HOME .. "/.config/hypr/monitors.lua") then
+    require("monitors")
+end
+
+-- Shell overrides --
+require("hyprland.shellOverrides.main")
